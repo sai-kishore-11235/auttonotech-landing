@@ -3,9 +3,9 @@
   --bg: #020617;
   --bg-elevated: #020617;
   --bg-soft: #020617;
-  --accent: #4f46e5;
-  --accent-soft: rgba(79, 70, 229, 0.12);
-  --accent-strong: #6366f1;
+  --accent: #06b6d4;
+  --accent-soft: rgba(6, 182, 212, 0.12);
+  --accent-strong: #0891b2;
   --accent-secondary: #22c55e;
   --accent-secondary-soft: rgba(34, 197, 94, 0.1);
   --text-primary: #f9fafb;
@@ -14,10 +14,13 @@
   --shadow-soft: 0 18px 80px rgba(15, 23, 42, 0.8);
   --radius-lg: 28px;
   /* Hero / landing */
-  --teal: #0d9488;
-  --teal-hover: #0f766e;
+  --primary-blue: #1e88e5;
+  --primary-blue-light: #2196f3;
+  --primary-blue-hover: #1565c0;
+  --cyan: #06b6d4;
+  --cyan-hover: #0891b2;
   --top-stripe: #e8a0a0;
-  --header-bg: rgba(15, 23, 42, 0.95);
+  --header-bg: rgba(15, 30, 50, 0.98);
   --hero-overlay: rgba(8, 47, 73, 0.82);
 }
 
@@ -110,7 +113,7 @@ body {
 .btn-get-quote {
   display: inline-block;
   padding: 10px 20px;
-  background: var(--teal);
+  background: var(--cyan);
   color: #fff;
   font-size: 0.9375rem;
   font-weight: 600;
@@ -120,7 +123,7 @@ body {
 }
 
 .btn-get-quote:hover {
-  background: var(--teal-hover);
+  background: var(--cyan-hover);
 }
 
 @media (max-width: 768px) {
@@ -141,20 +144,20 @@ body {
 }
 
 .header--light .header-nav-link:hover {
-  color: var(--teal);
+  color: var(--cyan);
 }
 
 .header--light .header-cta {
-  background: var(--teal);
+  background: var(--cyan);
   color: #fff;
 }
 
 .header--light .header-cta:hover {
-  background: var(--teal-hover);
+  background: var(--cyan-hover);
 }
 
 .header--light .header-nav-link--active {
-  color: var(--teal);
+  color: var(--cyan);
 }
 
 /* Header dark variant (e.g. About page) */
@@ -174,12 +177,12 @@ body {
 }
 
 .header--dark .header-cta {
-  background: #0d9488;
+  background: var(--cyan);
   color: #fff;
 }
 
 .header--dark .header-cta:hover {
-  background: #0f766e;
+  background: var(--cyan-hover);
 }
 
 .header-logo {
@@ -303,7 +306,7 @@ body {
 .btn-hero-primary {
   display: inline-block;
   padding: 14px 28px;
-  background: var(--teal);
+  background: var(--cyan);
   color: #fff;
   font-size: 1rem;
   font-weight: 600;
@@ -313,7 +316,7 @@ body {
 }
 
 .btn-hero-primary:hover {
-  background: var(--teal-hover);
+  background: var(--cyan-hover);
 }
 
 .btn-hero-outline {
@@ -584,7 +587,7 @@ body {
 }
 
 .numbers-value--teal {
-  color: #34d399;
+  color: var(--cyan);
 }
 
 .numbers-value--orange {
@@ -820,7 +823,7 @@ body {
 
 /* ----- CTA Section ----- */
 .cta-section {
-  background: var(--teal);
+  background: var(--cyan);
   padding: 40px 24px 64px;
   text-align: center;
 }
@@ -866,13 +869,13 @@ body {
 
 .cta-btn--outline {
   background: #fff;
-  color: var(--teal);
+  color: var(--cyan);
   border: 2px solid #fff;
 }
 
 .cta-btn--outline:hover {
   background: rgba(255, 255, 255, 0.95);
-  color: var(--teal-hover);
+  color: var(--cyan-hover);
 }
 
 .cta-btn--solid {
