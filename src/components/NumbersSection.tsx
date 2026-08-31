@@ -1,4 +1,5 @@
 import React from 'react';
+import { ScrollReveal } from './ScrollReveal';
 
 export interface StatItem {
   id: string;
@@ -16,21 +17,21 @@ const STATS: StatItem[] = [
 
 export function NumbersSection() {
   return (
-    <section className="numbers-section" aria-label="Key statistics">
+    <ScrollReveal as="section" className="numbers-section" aria-label="Key statistics">
       <div className="numbers-section-pattern" aria-hidden="true" />
       <div className="numbers-section-inner">
         <div className="numbers-grid">
           {STATS.map(({ id, value, label, accent }) => (
-            <div key={id} className="numbers-stat">
+            <div key={id} className="numbers-stat scroll-reveal-child">
               <span className={`numbers-value numbers-value--${accent}`}>{value}</span>
               <span className="numbers-label">{label}</span>
             </div>
           ))}
         </div>
-        <p className="numbers-tagline">
+        <p className="numbers-tagline scroll-reveal-child">
           Serving small and mid-size US businesses since 2019
         </p>
       </div>
-    </section>
+    </ScrollReveal>
   );
 }

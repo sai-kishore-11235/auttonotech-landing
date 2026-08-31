@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function LocationIcon() {
   return (
@@ -43,17 +44,17 @@ function TwitterIcon() {
 }
 
 const QUICK_LINKS = [
-  { label: 'Home', href: '#home' },
-  { label: 'Services', href: '#services' },
-  { label: 'About Us', href: '#about' },
-  { label: 'Pricing', href: '#pricing' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Home', to: '/' },
+  { label: 'Services', to: '/services/mortgage' },
+  { label: 'About Us', to: '/about' },
+  { label: 'Pricing', to: '/pricing' },
+  { label: 'Contact', to: '/contact' },
 ];
 
 const SERVICES = [
-  { label: 'Mortgage Operations', href: '#services-mortgage' },
-  { label: 'Customer Support', href: '#services-support' },
-  { label: 'Technology & Cloud', href: '#services-cloud' },
+  { label: 'Mortgage Operations', to: '/services/mortgage' },
+  { label: 'Customer Support', to: '/services/customer-support' },
+  { label: 'Technology & Cloud', to: '/services/technology' },
 ];
 
 export function Footer() {
@@ -81,9 +82,9 @@ export function Footer() {
           <div className="site-footer-col">
             <h3 className="site-footer-heading">Quick Links</h3>
             <ul className="site-footer-links">
-              {QUICK_LINKS.map(({ label, href }) => (
-                <li key={href}>
-                  <a href={href} className="site-footer-link">{label}</a>
+              {QUICK_LINKS.map(({ label, to }) => (
+                <li key={to}>
+                  <Link to={to} className="site-footer-link">{label}</Link>
                 </li>
               ))}
             </ul>
@@ -93,9 +94,9 @@ export function Footer() {
           <div className="site-footer-col">
             <h3 className="site-footer-heading">Services</h3>
             <ul className="site-footer-links">
-              {SERVICES.map(({ label, href }) => (
-                <li key={href}>
-                  <a href={href} className="site-footer-link">{label}</a>
+              {SERVICES.map(({ label, to }) => (
+                <li key={label}>
+                  <Link to={to} className="site-footer-link">{label}</Link>
                 </li>
               ))}
             </ul>

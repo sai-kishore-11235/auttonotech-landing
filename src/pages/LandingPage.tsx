@@ -1,8 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { BuiltForSection } from '../components/BuiltForSection';
 import { Header } from '../components/Header';
 import { CtaSection } from '../components/CtaSection';
 import { Footer } from '../components/Footer';
+import { ScrollReveal } from '../components/ScrollReveal';
 import { ServicesDivisionsSection } from '../components/ServicesDivisionsSection';
 import { NumbersSection } from '../components/NumbersSection';
 
@@ -55,8 +57,8 @@ export function LandingPage() {
             security, US business hours.
           </p>
           <div className="hero-cta">
-            <a className="btn-hero-primary" href="#discovery">Schedule Discovery Call</a>
-            <a className="btn-hero-outline" href="#services">View Our Services</a>
+            <Link className="btn-hero-primary" to="/contact">Schedule Discovery Call</Link>
+            <Link className="btn-hero-outline" to="/services/mortgage">View Our Services</Link>
           </div>
           <ul className="hero-benefits" aria-label="Key benefits">
             <li><span className="hero-check" aria-hidden="true">✓</span> SOC 2 Compliant</li>
@@ -67,30 +69,30 @@ export function LandingPage() {
         </div>
       </section>
 
-      <section className="scale-section" aria-labelledby="scale-heading">
+      <ScrollReveal as="section" className="scale-section" aria-labelledby="scale-heading">
         <div className="scale-section-bar scale-section-bar--top" aria-hidden="true" />
         <div className="scale-section-inner">
-          <h2 id="scale-heading" className="scale-heading">Scale Without the Chaos</h2>
-          <p className="scale-body">
+          <h2 id="scale-heading" className="scale-heading scroll-reveal-child">Scale Without the Chaos</h2>
+          <p className="scale-body scroll-reveal-child">
             Auttonotech delivers specialized offshore operations for US businesses. We&apos;re not
             a generic BPO—we&apos;re domain experts in mortgage processing, customer support, and
             cloud infrastructure. Delaware-registered LLC with India delivery center.
           </p>
-          <p className="scale-tagline">
+          <p className="scale-tagline scroll-reveal-child">
             Three service divisions. One commitment: execution excellence.
           </p>
         </div>
         <div className="scale-section-bar scale-section-bar--bottom" aria-hidden="true" />
-      </section>
+      </ScrollReveal>
 
       <ServicesDivisionsSection />
       <NumbersSection />
 
-      <section className="what-sets-apart" aria-labelledby="what-sets-apart-heading">
+      <ScrollReveal as="section" className="what-sets-apart" aria-labelledby="what-sets-apart-heading">
         <div className="what-sets-apart-inner">
-          <h2 id="what-sets-apart-heading" className="what-sets-apart-title">What Sets Us Apart</h2>
+          <h2 id="what-sets-apart-heading" className="what-sets-apart-title scroll-reveal-child">What Sets Us Apart</h2>
           <div className="what-sets-apart-grid">
-            <article className="what-sets-apart-card">
+            <article className="what-sets-apart-card scroll-reveal-child">
               <div className="what-sets-apart-icon" aria-hidden="true"><TargetIcon /></div>
               <h3 className="what-sets-apart-card-title">Domain Expertise</h3>
               <p className="what-sets-apart-card-desc">
@@ -98,7 +100,7 @@ export function LandingPage() {
                 Cloud engineers with Azure certifications. Support teams trained on your industry.
               </p>
             </article>
-            <article className="what-sets-apart-card">
+            <article className="what-sets-apart-card scroll-reveal-child">
               <div className="what-sets-apart-icon" aria-hidden="true"><LockIcon /></div>
               <h3 className="what-sets-apart-card-title">Enterprise Security</h3>
               <p className="what-sets-apart-card-desc">
@@ -106,7 +108,7 @@ export function LandingPage() {
                 US-registered entity with full legal compliance.
               </p>
             </article>
-            <article className="what-sets-apart-card">
+            <article className="what-sets-apart-card scroll-reveal-child">
               <div className="what-sets-apart-icon" aria-hidden="true"><HandshakeIcon /></div>
               <h3 className="what-sets-apart-card-title">US Business Hours</h3>
               <p className="what-sets-apart-card-desc">
@@ -116,7 +118,7 @@ export function LandingPage() {
             </article>
           </div>
         </div>
-      </section>
+      </ScrollReveal>
 
       <BuiltForSection />
       <CtaSection />

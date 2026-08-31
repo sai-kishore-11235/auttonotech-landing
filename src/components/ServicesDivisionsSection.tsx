@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { ScrollReveal } from './ScrollReveal';
 
 const strokeWidth = 2;
 
@@ -44,7 +46,7 @@ const DIVISIONS: ServiceDivisionItem[] = [
     title: 'Mortgage & Real Estate Operations',
     description:
       'Full-cycle loan processing, post-closing, title support, and underwriting assistance for US lenders and brokers.',
-    href: '#services-mortgage',
+    href: '/services/mortgage',
     accent: 'green',
   },
   {
@@ -53,7 +55,7 @@ const DIVISIONS: ServiceDivisionItem[] = [
     title: 'Customer Support & Back Office',
     description:
       'Voice and non-voice support, data entry, CRM management, and documentation processing for growing businesses.',
-    href: '#services-support',
+    href: '/services/customer-support',
     accent: 'green',
   },
   {
@@ -62,26 +64,27 @@ const DIVISIONS: ServiceDivisionItem[] = [
     title: 'Technology & Cloud Services',
     description:
       "Azure cloud infrastructure, AVD deployment, remote work security, and custom web development. 'In Pursuit of Binary Excellence'",
-    href: '#services-cloud',
+    href: '/services/technology',
     accent: 'orange',
   },
 ];
 
 export function ServicesDivisionsSection() {
   return (
-    <section
+    <ScrollReveal
+      as="section"
       className="divisions-section"
       aria-labelledby="divisions-heading"
     >
       <div className="divisions-inner">
-        <h2 id="divisions-heading" className="divisions-title">
+        <h2 id="divisions-heading" className="divisions-title scroll-reveal-child">
           Three service divisions. One commitment: execution excellence.
         </h2>
         <div className="divisions-grid">
           {DIVISIONS.map((item) => (
             <article
               key={item.id}
-              className={`divisions-card divisions-card--${item.accent}`}
+              className={`divisions-card divisions-card--${item.accent} scroll-reveal-child`}
               aria-labelledby={`divisions-card-title-${item.id}`}
             >
               <div className="divisions-card-icon" aria-hidden="true">
@@ -91,13 +94,13 @@ export function ServicesDivisionsSection() {
                 {item.title}
               </h3>
               <p className="divisions-card-desc">{item.description}</p>
-              <a href={item.href} className="divisions-card-link">
+              <Link to={item.href} className="divisions-card-link">
                 Learn More →
-              </a>
+              </Link>
             </article>
           ))}
         </div>
       </div>
-    </section>
+    </ScrollReveal>
   );
 }

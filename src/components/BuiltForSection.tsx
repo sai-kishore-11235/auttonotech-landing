@@ -1,4 +1,5 @@
 import React from 'react';
+import { ScrollReveal } from './ScrollReveal';
 
 const iconStroke = 3;
 
@@ -86,7 +87,7 @@ interface BuiltForCardProps {
 function BuiltForCard({ item }: BuiltForCardProps) {
   return (
     <article
-      className="built-for-card"
+      className="built-for-card scroll-reveal-child"
       role="listitem"
       aria-labelledby={`built-for-title-${item.id}`}
     >
@@ -103,12 +104,13 @@ function BuiltForCard({ item }: BuiltForCardProps) {
 
 export function BuiltForSection() {
   return (
-    <section
+    <ScrollReveal
+      as="section"
       className="built-for"
       aria-labelledby="built-for-heading"
     >
       <div className="built-for-inner">
-        <h2 id="built-for-heading" className="built-for-title">
+        <h2 id="built-for-heading" className="built-for-title scroll-reveal-child">
           Built For
         </h2>
         <div className="built-for-grid" role="list">
@@ -117,6 +119,6 @@ export function BuiltForSection() {
           ))}
         </div>
       </div>
-    </section>
+    </ScrollReveal>
   );
 }
