@@ -22,6 +22,22 @@ The project is structured like a standard Vite React/TypeScript app so you can e
 
    Then open the URL shown in the terminal (usually `http://localhost:5173`).
 
+The contact form sends mail through [EmailJS](https://www.emailjs.com/) (`@emailjs/browser` in `src/lib/sendContactEmail.ts`). There is no server-side mailer.
+
+1. Create a free account at [dashboard.emailjs.com](https://dashboard.emailjs.com/admin).
+2. **Email Services → Add New Service** — Gmail, Outlook, or **Custom SMTP**. For a Hostinger mailbox use SMTP host `smtp.hostinger.com`, port **465** (SSL) or **587** (STARTTLS), username = full mailbox address, password = mailbox password. Copy the **Service ID**.
+3. **Email Templates → Create New Template** — set **To** to your inbox and **Reply To** to `{{from_email}}`. Use these template variables (exactly): `from_name`, `from_email`, `phone`, `company`, `service`, `volume`, `message`. Copy the **Template ID**.
+4. **Account → General** — copy the **Public Key**.
+5. Copy `.env.example` to `.env` (never commit `.env`) and fill:
+
+   ```
+   VITE_EMAILJS_SERVICE_ID=
+   VITE_EMAILJS_TEMPLATE_ID=
+   VITE_EMAILJS_PUBLIC_KEY=
+   ```
+
+6. Restart Vite after any `.env` change (`npm run dev`). Keys are public in the browser; restrict allowed domains in EmailJS if your plan includes a domain whitelist (paid plans). Free tier is 200 requests/month.
+
 3. **Build for production**
 
    ```bash

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Logo } from './Logo';
 
 function LocationIcon() {
   return (
@@ -47,7 +48,6 @@ const QUICK_LINKS = [
   { label: 'Home', to: '/' },
   { label: 'Services', to: '/services/mortgage' },
   { label: 'About Us', to: '/about' },
-  { label: 'Pricing', to: '/pricing' },
   { label: 'Contact', to: '/contact' },
 ];
 
@@ -66,7 +66,7 @@ export function Footer() {
         <div className="site-footer-grid">
           {/* Company */}
           <div className="site-footer-col site-footer-col--company">
-            <h3 className="site-footer-heading">Auttonotech</h3>
+            <Logo className="site-footer-logo" linkToHome={false} />
             <p className="site-footer-tagline">Scale your business with Auttono Tech</p>
             <div className="site-footer-social" aria-label="Social links">
               <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="site-footer-social-link" aria-label="LinkedIn">

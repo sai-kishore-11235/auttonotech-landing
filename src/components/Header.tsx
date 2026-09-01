@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { SERVICE_LINKS, ServiceIcon } from './services/serviceShared';
+import { Logo } from './Logo';
 
 export interface HeaderProps {
   variant?: 'light' | 'dark';
@@ -38,9 +39,7 @@ export function Header({ variant = 'light' }: HeaderProps) {
   return (
     <header className={headerClass}>
       <div className="header-inner">
-        <Link to="/" className="header-logo">
-          Auttonotech
-        </Link>
+        <Logo />
         <nav className="header-nav" aria-label="Primary">
           <NavLink
             to="/"
@@ -92,14 +91,6 @@ export function Header({ variant = 'light' }: HeaderProps) {
             </div>
           </div>
 
-          <NavLink
-            to="/pricing"
-            className={({ isActive }) =>
-              `header-nav-link${isActive ? ' header-nav-link--active' : ''}`
-            }
-          >
-            Pricing
-          </NavLink>
           <NavLink
             to="/contact"
             className={({ isActive }) =>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
+import { sendContactEmail } from '../lib/sendContactEmail';
 
 const SERVICE_OPTIONS = [
   'Mortgage Operations',
@@ -19,6 +20,8 @@ interface FormData {
   message: string;
 }
 
+type FieldName = keyof FormData;
+
 const INITIAL_FORM: FormData = {
   name: '',
   email: '',
@@ -28,6 +31,8 @@ const INITIAL_FORM: FormData = {
   volume: '',
   message: '',
 };
+
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function PhoneIcon() {
   return (
@@ -64,20 +69,78 @@ function ClockIcon() {
   );
 }
 
+function validateForm(form: FormData): Partial<Record<FieldName, string>> {
+  const errors: Partial<Record<FieldName, string>> = {};
+
+  if (!form.name.trim()) errors.name = 'Name is required.';
+  if (!form.email.trim()) {
+    errors.email = 'Email is required.';
+  } else if (!EMAIL_PATTERN.test(form.email.trim())) {
+    errors.email = 'Enter a valid email address.';
+  }
+  if (!form.phone.trim()) errors.phone = 'Phone is required.';
+  if (!form.company.trim()) errors.company = 'Company is required.';
+  if (!form.service.trim()) errors.service = 'Please select a service.';
+
+  return errors;
+}
+
 export function ContactPage() {
   const [form, setForm] = useState<FormData>(INITIAL_FORM);
+  const [fieldErrors, setFieldErrors] = useState<Partial<Record<FieldName, string>>>({});
+  const [submitError, setSubmitError] = useState('');
+  const [sending, setSending] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
   ) {
     const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
+    const field = name as FieldName;
+    setForm((prev) => ({ ...prev, [field]: value }));
+    setFieldErrors((prev) => {
+      if (!prev[field]) return prev;
+      const next = { ...prev };
+      delete next[field];
+      return next;
+    });
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setSubmitted(true);
+    if (sending) return;
+
+    const errors = validateForm(form);
+    setFieldErrors(errors);
+    setSubmitError('');
+
+    if (Object.keys(errors).length > 0) return;
+
+    setSending(true);
+    try {
+      await sendContactEmail({
+        name: form.name.trim(),
+        email: form.email.trim(),
+        phone: form.phone.trim(),
+        company: form.company.trim(),
+        service: form.service.trim(),
+        volume: form.volume.trim(),
+        message: form.message.trim(),
+      });
+      setSubmitted(true);
+    } catch (err) {
+      const message =
+        err instanceof Error && err.message
+          ? err.message
+          : 'Unable to send your message. Please try again or email info@auttonotech.com.';
+      setSubmitError(message);
+    } finally {
+      setSending(false);
+    }
+  }
+
+  function fieldClass(name: FieldName, extra = '') {
+    return `contact-input${extra ? ` ${extra}` : ''}${fieldErrors[name] ? ' contact-input--error' : ''}`;
   }
 
   return (
@@ -146,14 +209,20 @@ export function ContactPage() {
                   </label>
                   <input
                     id="name"
-                    className="contact-input"
+                    className={fieldClass('name')}
                     type="text"
                     name="name"
                     value={form.name}
                     onChange={handleChange}
                     required
                     autoComplete="name"
+                    disabled={sending}
+                    aria-invalid={Boolean(fieldErrors.name)}
+                    aria-describedby={fieldErrors.name ? 'name-error' : undefined}
                   />
+                  {fieldErrors.name && (
+                    <p id="name-error" className="contact-field-error" role="alert">{fieldErrors.name}</p>
+                  )}
                 </div>
 
                 <div className="contact-form-row">
@@ -162,14 +231,20 @@ export function ContactPage() {
                   </label>
                   <input
                     id="email"
-                    className="contact-input"
+                    className={fieldClass('email')}
                     type="email"
                     name="email"
                     value={form.email}
                     onChange={handleChange}
                     required
                     autoComplete="email"
+                    disabled={sending}
+                    aria-invalid={Boolean(fieldErrors.email)}
+                    aria-describedby={fieldErrors.email ? 'email-error' : undefined}
                   />
+                  {fieldErrors.email && (
+                    <p id="email-error" className="contact-field-error" role="alert">{fieldErrors.email}</p>
+                  )}
                 </div>
 
                 <div className="contact-form-row">
@@ -178,14 +253,20 @@ export function ContactPage() {
                   </label>
                   <input
                     id="phone"
-                    className="contact-input"
+                    className={fieldClass('phone')}
                     type="tel"
                     name="phone"
                     value={form.phone}
                     onChange={handleChange}
                     required
                     autoComplete="tel"
+                    disabled={sending}
+                    aria-invalid={Boolean(fieldErrors.phone)}
+                    aria-describedby={fieldErrors.phone ? 'phone-error' : undefined}
                   />
+                  {fieldErrors.phone && (
+                    <p id="phone-error" className="contact-field-error" role="alert">{fieldErrors.phone}</p>
+                  )}
                 </div>
 
                 <div className="contact-form-row">
@@ -194,14 +275,20 @@ export function ContactPage() {
                   </label>
                   <input
                     id="company"
-                    className="contact-input"
+                    className={fieldClass('company')}
                     type="text"
                     name="company"
                     value={form.company}
                     onChange={handleChange}
                     required
                     autoComplete="organization"
+                    disabled={sending}
+                    aria-invalid={Boolean(fieldErrors.company)}
+                    aria-describedby={fieldErrors.company ? 'company-error' : undefined}
                   />
+                  {fieldErrors.company && (
+                    <p id="company-error" className="contact-field-error" role="alert">{fieldErrors.company}</p>
+                  )}
                 </div>
 
                 <div className="contact-form-row">
@@ -210,17 +297,23 @@ export function ContactPage() {
                   </label>
                   <select
                     id="service"
-                    className="contact-input contact-select"
+                    className={fieldClass('service', 'contact-select')}
                     name="service"
                     value={form.service}
                     onChange={handleChange}
                     required
+                    disabled={sending}
+                    aria-invalid={Boolean(fieldErrors.service)}
+                    aria-describedby={fieldErrors.service ? 'service-error' : undefined}
                   >
                     <option value="" disabled>Select a service</option>
                     {SERVICE_OPTIONS.map((opt) => (
                       <option key={opt} value={opt}>{opt}</option>
                     ))}
                   </select>
+                  {fieldErrors.service && (
+                    <p id="service-error" className="contact-field-error" role="alert">{fieldErrors.service}</p>
+                  )}
                 </div>
 
                 <div className="contact-form-row">
@@ -235,6 +328,7 @@ export function ContactPage() {
                     value={form.volume}
                     onChange={handleChange}
                     placeholder="e.g. 20 files/month or $5,000 budget"
+                    disabled={sending}
                   />
                 </div>
 
@@ -250,11 +344,16 @@ export function ContactPage() {
                     onChange={handleChange}
                     rows={4}
                     placeholder="Tell us about your needs..."
+                    disabled={sending}
                   />
                 </div>
 
-                <button type="submit" className="contact-submit">
-                  Send Message
+                {submitError && (
+                  <p className="contact-form-error" role="alert">{submitError}</p>
+                )}
+
+                <button type="submit" className="contact-submit" disabled={sending}>
+                  {sending ? 'Sending…' : 'Send Message'}
                 </button>
               </form>
             )}

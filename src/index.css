@@ -142,7 +142,58 @@ body {
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
-.header--light .header-logo,
+.header-logo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+
+.brand-logo-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.brand-logo {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
+  min-width: 0;
+  position: relative;
+}
+
+.brand-logo-img {
+  display: none;
+  height: 42px;
+  width: auto;
+  max-width: min(280px, 58vw);
+  object-fit: contain;
+}
+
+.header--light .brand-logo-img--on-light,
+.header--dark .brand-logo-img--on-dark,
+.site-footer-logo .brand-logo-img--on-dark {
+  display: block;
+}
+
+.site-footer-logo {
+  margin-bottom: 12px;
+}
+
+.site-footer-logo .brand-logo-img {
+  height: 48px;
+  max-width: 280px;
+}
+
+@media (max-width: 640px) {
+  .brand-logo-img {
+    height: 32px;
+  }
+}
+
 .header--light .header-nav-link {
   color: #1e293b;
 }
@@ -170,7 +221,6 @@ body {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.header--dark .header-logo,
 .header--dark .header-nav-link {
   color: rgba(255, 255, 255, 0.95);
 }
@@ -187,13 +237,6 @@ body {
 
 .header--dark .header-cta:hover {
   background: var(--cyan-hover);
-}
-
-.header-logo {
-  font-size: 1.25rem;
-  font-weight: 700;
-  text-decoration: none;
-  letter-spacing: 0.02em;
 }
 
 .header-nav {
@@ -343,16 +386,20 @@ body {
 .hero-bg {
   position: absolute;
   inset: 0;
-  /* With custom image: put hero-bg.png in public/ and uncomment next line, then remove the gradient line */
-  /* background: linear-gradient(160deg, var(--hero-overlay) 0%, var(--hero-overlay) 100%), url('/hero-bg.png') center/cover no-repeat; */
   background:
-    linear-gradient(160deg, rgba(6, 78, 59, 0.5) 0%, rgba(8, 47, 73, 0.75) 40%, rgba(15, 23, 42, 0.92) 100%);
+    linear-gradient(
+      180deg,
+      rgba(8, 18, 36, 0.72) 0%,
+      rgba(8, 18, 36, 0.55) 45%,
+      rgba(8, 18, 36, 0.78) 100%
+    ),
+    url('/hero-bg.jpg') center/cover no-repeat;
 }
 
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: var(--hero-overlay);
+  background: rgba(8, 18, 36, 0.35);
   pointer-events: none;
 }
 
@@ -1679,6 +1726,32 @@ body {
   box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.15);
 }
 
+.contact-input--error {
+  border-color: #ef4444;
+}
+
+.contact-input--error:focus {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+}
+
+.contact-field-error {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: #dc2626;
+}
+
+.contact-form-error {
+  margin: 0;
+  padding: 10px 12px;
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: #991b1b;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+}
+
 .contact-input::placeholder {
   color: #94a3b8;
 }
@@ -1710,8 +1783,13 @@ body {
   transition: background 0.15s ease;
 }
 
-.contact-submit:hover {
+.contact-submit:hover:not(:disabled) {
   background: var(--cyan-hover);
+}
+
+.contact-submit:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
 }
 
 .contact-success {
