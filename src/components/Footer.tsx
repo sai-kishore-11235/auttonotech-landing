@@ -71,7 +71,7 @@ export function Footer() {
             <Logo className="site-footer-logo" linkToHome={false} />
             <p className="site-footer-tagline">Scale your business with Auttono Tech</p>
             <div className="site-footer-social" aria-label="Social links">
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="site-footer-social-link" aria-label="LinkedIn">
+              <a href="https://in.linkedin.com/company/auttonotech-llc" target="_blank" rel="noopener noreferrer" className="site-footer-social-link" aria-label="LinkedIn">
                 <LinkedInIcon />
               </a>
               <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="site-footer-social-link" aria-label="Twitter">
