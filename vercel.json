@@ -1,5 +1,24 @@
 {
+  "redirects": [
+    {
+      "source": "/((?!about/?$|pricing/?$|contact/?$|services/mortgage/?$|services/customer-support/?$|services/technology/?$)(?!.*\\.[A-Za-z0-9]+$).+)",
+      "destination": "/",
+      "permanent": false
+    }
+  ],
   "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/about", "destination": "/index.html" },
+    { "source": "/about/", "destination": "/index.html" },
+    { "source": "/pricing", "destination": "/index.html" },
+    { "source": "/pricing/", "destination": "/index.html" },
+    { "source": "/contact", "destination": "/index.html" },
+    { "source": "/contact/", "destination": "/index.html" },
+    { "source": "/services/mortgage", "destination": "/index.html" },
+    { "source": "/services/mortgage/", "destination": "/index.html" },
+    { "source": "/services/customer-support", "destination": "/index.html" },
+    { "source": "/services/customer-support/", "destination": "/index.html" },
+    { "source": "/services/technology", "destination": "/index.html" },
+    { "source": "/services/technology/", "destination": "/index.html" }
   ]
 }

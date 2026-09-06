@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Navigate, Routes, Route } from 'react-router-dom';
 import { LandingPage } from './pages/LandingPage';
 import { AboutPage } from './pages/AboutPage';
 import { MortgageServicesPage } from './pages/MortgageServicesPage';
@@ -19,6 +19,7 @@ const App: React.FC = () => {
         <Route path="/services/technology" element={<TechnologyServicesPage />} />
         <Route path="/pricing" element={<PricingPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
   );
