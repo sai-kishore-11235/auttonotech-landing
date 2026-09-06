@@ -563,7 +563,7 @@ body {
   color: #475569;
 }
 
-/* ----- Three service divisions ----- */
+/* ----- Service divisions ----- */
 .divisions-section {
   background: linear-gradient(180deg, #f0f9ff 0%, #fff 100%);
   padding: 56px 24px 64px;
@@ -592,7 +592,7 @@ body {
 
 @media (min-width: 768px) {
   .divisions-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 28px;
   }
 }

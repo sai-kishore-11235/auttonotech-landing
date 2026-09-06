@@ -7,6 +7,7 @@ const SERVICE_OPTIONS = [
   'Mortgage Operations',
   'Customer Support',
   'Technology & Cloud',
+  'Infrastructure Division',
   'Multiple Services',
 ];
 

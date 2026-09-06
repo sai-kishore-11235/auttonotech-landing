@@ -52,9 +52,9 @@ export function LandingPage() {
           <p className="hero-tagline">GLOBAL EXECUTION. LOCAL EXCELLENCE.</p>
           <h1 className="hero-headline">Scale Your Business with Offshore Operations</h1>
           <p className="hero-desc">
-            Specialized offshore operations for US businesses across mortgage processing,
-            customer support, and cloud infrastructure — structured workflows, enterprise-grade
-            security, US business hours.
+            Specialized operations across mortgage processing, customer support, technology,
+            and infrastructure — structured workflows, enterprise-grade security, and
+            execution discipline.
           </p>
           <div className="hero-cta">
             <Link className="btn-hero-primary" to="/contact">Schedule Discovery Call</Link>
@@ -74,12 +74,12 @@ export function LandingPage() {
         <div className="scale-section-inner">
           <h2 id="scale-heading" className="scale-heading scroll-reveal-child">Scale Without the Chaos</h2>
           <p className="scale-body scroll-reveal-child">
-            Auttonotech delivers specialized offshore operations for US businesses. We&apos;re not
-            a generic BPO—we&apos;re domain experts in mortgage processing, customer support, and
-            cloud infrastructure. Delaware-registered LLC with India delivery center.
+            Auttonotech delivers specialized operations across four service divisions. We&apos;re not
+            a generic BPO—we&apos;re domain experts in mortgage processing, customer support,
+            technology, and infrastructure. Delaware-registered LLC with India delivery center.
           </p>
           <p className="scale-tagline scroll-reveal-child">
-            Three service divisions. One commitment: execution excellence.
+            Four service divisions. One commitment: execution excellence.
           </p>
         </div>
         <div className="scale-section-bar scale-section-bar--bottom" aria-hidden="true" />

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ScrollReveal } from './ScrollReveal';
+import { INFRASTRUCTURE_DIVISION_URL } from './services/serviceShared';
 
 const strokeWidth = 2;
 
@@ -30,12 +31,29 @@ function CloudIcon() {
   );
 }
 
+function BuildingIcon() {
+  return (
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
+      <path d="M6 12h4" />
+      <path d="M6 16h4" />
+      <path d="M10 6h4" />
+      <path d="M10 10h4" />
+      <path d="M10 14h4" />
+      <path d="M10 18h4" />
+      <path d="M14 12h4" />
+      <path d="M14 16h4" />
+    </svg>
+  );
+}
+
 export interface ServiceDivisionItem {
   id: string;
   icon: React.ReactNode;
   title: string;
   description: string;
   href: string;
+  external?: boolean;
   accent: 'green' | 'orange';
 }
 
@@ -67,6 +85,16 @@ const DIVISIONS: ServiceDivisionItem[] = [
     href: '/services/technology',
     accent: 'orange',
   },
+  {
+    id: 'infra',
+    icon: <BuildingIcon />,
+    title: 'Infrastructure Division',
+    description:
+      'EPC, civil construction, renewable energy, industrial and government projects across India—delivered with engineering precision, safety, and execution discipline.',
+    href: INFRASTRUCTURE_DIVISION_URL,
+    external: true,
+    accent: 'orange',
+  },
 ];
 
 export function ServicesDivisionsSection() {
@@ -78,7 +106,7 @@ export function ServicesDivisionsSection() {
     >
       <div className="divisions-inner">
         <h2 id="divisions-heading" className="divisions-title scroll-reveal-child">
-          Three service divisions. One commitment: execution excellence.
+          Four service divisions. One commitment: execution excellence.
         </h2>
         <div className="divisions-grid">
           {DIVISIONS.map((item) => (
@@ -94,9 +122,15 @@ export function ServicesDivisionsSection() {
                 {item.title}
               </h3>
               <p className="divisions-card-desc">{item.description}</p>
-              <Link to={item.href} className="divisions-card-link">
-                Learn More →
-              </Link>
+              {item.external ? (
+                <a href={item.href} className="divisions-card-link">
+                  Learn More →
+                </a>
+              ) : (
+                <Link to={item.href} className="divisions-card-link">
+                  Learn More →
+                </Link>
+              )}
             </article>
           ))}
         </div>

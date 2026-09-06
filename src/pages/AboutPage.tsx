@@ -64,7 +64,7 @@ export function AboutPage() {
             <p>
               Founded in 2019, Auttonotech was built on a simple principle: offshore operations
               should be specialized, not generic. While most BPOs claim to do everything, we focus
-              on what we do best—mortgage processing, customer support, and cloud infrastructure.
+              on what we do best—mortgage processing, customer support, technology, and infrastructure.
             </p>
             <p>
               We&apos;re a Delaware-registered LLC with operations in Bangalore, India. Our team

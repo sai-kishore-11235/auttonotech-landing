@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Logo } from './Logo';
+import { INFRASTRUCTURE_DIVISION_URL } from './services/serviceShared';
 
 function LocationIcon() {
   return (
@@ -51,10 +52,11 @@ const QUICK_LINKS = [
   { label: 'Contact', to: '/contact' },
 ];
 
-const SERVICES = [
+const SERVICES: Array<{ label: string; to?: string; href?: string }> = [
   { label: 'Mortgage Operations', to: '/services/mortgage' },
   { label: 'Customer Support', to: '/services/customer-support' },
   { label: 'Technology & Cloud', to: '/services/technology' },
+  { label: 'Infrastructure Division', href: INFRASTRUCTURE_DIVISION_URL },
 ];
 
 export function Footer() {
@@ -94,9 +96,13 @@ export function Footer() {
           <div className="site-footer-col">
             <h3 className="site-footer-heading">Services</h3>
             <ul className="site-footer-links">
-              {SERVICES.map(({ label, to }) => (
-                <li key={label}>
-                  <Link to={to} className="site-footer-link">{label}</Link>
+              {SERVICES.map((item) => (
+                <li key={item.label}>
+                  {item.href ? (
+                    <a href={item.href} className="site-footer-link">{item.label}</a>
+                  ) : item.to ? (
+                    <Link to={item.to} className="site-footer-link">{item.label}</Link>
+                  ) : null}
                 </li>
               ))}
             </ul>

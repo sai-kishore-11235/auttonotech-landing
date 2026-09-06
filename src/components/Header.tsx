@@ -74,20 +74,42 @@ export function Header({ variant = 'light' }: HeaderProps) {
               <span className="header-nav-caret" aria-hidden="true">▾</span>
             </button>
             <div className="header-dropdown-menu" role="menu">
-              {SERVICE_LINKS.map((item) => (
-                <Link
-                  key={item.to}
-                  to={item.to}
-                  className="header-dropdown-item"
-                  role="menuitem"
-                  onClick={closeDropdown}
-                >
-                  <span className="header-dropdown-icon">
-                    <ServiceIcon type={item.icon} />
-                  </span>
-                  {item.label}
-                </Link>
-              ))}
+              {SERVICE_LINKS.map((item) => {
+                const content = (
+                  <>
+                    <span className="header-dropdown-icon">
+                      <ServiceIcon type={item.icon} />
+                    </span>
+                    {item.label}
+                  </>
+                );
+
+                if ('href' in item) {
+                  return (
+                    <a
+                      key={item.href}
+                      href={item.href}
+                      className="header-dropdown-item"
+                      role="menuitem"
+                      onClick={closeDropdown}
+                    >
+                      {content}
+                    </a>
+                  );
+                }
+
+                return (
+                  <Link
+                    key={item.to}
+                    to={item.to}
+                    className="header-dropdown-item"
+                    role="menuitem"
+                    onClick={closeDropdown}
+                  >
+                    {content}
+                  </Link>
+                );
+              })}
             </div>
           </div>
 
