@@ -97,11 +97,9 @@ const INDUSTRY_SOLUTIONS = [
 function SupportBlock({
   title,
   sections,
-  pricing,
 }: {
   title: string;
   sections: { title: string; items: string[] }[];
-  pricing: string;
 }) {
   return (
     <article className="support-block scroll-reveal-child">
@@ -118,7 +116,6 @@ function SupportBlock({
           </div>
         ))}
       </div>
-      <p className="support-block-pricing">{pricing}</p>
       <Link className="btn-mortgage-pricing" to="/contact">Get Quote</Link>
     </article>
   );
@@ -158,12 +155,10 @@ export function CustomerSupportServicesPage() {
             <SupportBlock
               title="Voice Support"
               sections={VOICE_SECTIONS}
-              pricing="$8-12/hour per agent | $1,200-2,000/month per FTE"
             />
             <SupportBlock
               title="Non-Voice Support"
               sections={NON_VOICE_SECTIONS}
-              pricing="$6-10/hour per agent | $1,000-1,600/month per FTE"
             />
           </div>
         </div>

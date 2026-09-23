@@ -32,54 +32,6 @@ const SERVICE_ITEMS = [
   { title: 'Post-Closing & QC', desc: 'Trailing docs, investor delivery, QC audits, and compliance reporting.' },
 ];
 
-const PRICING_TIERS = [
-  {
-    id: 'per-file',
-    title: 'Per-File Pricing',
-    price: '$300-500',
-    unit: 'per file',
-    features: [
-      'Pay only for files processed',
-      'No monthly commitment',
-      'Scale up/down instantly',
-      'Full processing cycle',
-    ],
-    bestFor: 'Variable volume',
-    cta: 'Get Quote',
-    popular: false,
-  },
-  {
-    id: 'fte',
-    title: 'Monthly FTE Retainer',
-    price: '$3,500-5,000',
-    unit: 'per month',
-    features: [
-      'Dedicated processor(s)',
-      'Predictable monthly cost',
-      'Priority support',
-      '20-40 files/month capacity',
-    ],
-    bestFor: 'Consistent volume',
-    cta: 'Get Quote',
-    popular: true,
-  },
-  {
-    id: 'trial',
-    title: 'Risk-Free Trial',
-    price: '50% OFF',
-    unit: 'first 5 files',
-    features: [
-      'No long-term commitment',
-      'Full QC process included',
-      'Evaluate quality & speed',
-      'Then standard pricing',
-    ],
-    bestFor: 'Testing quality',
-    cta: 'Start Trial',
-    popular: false,
-  },
-];
-
 const STEPS = [
   {
     num: 1,
@@ -188,7 +140,7 @@ export function MortgageServicesPage() {
           </ul>
 
           <div className="mortgage-hero-cta">
-            <a className="btn-mortgage-primary" href="#pricing">Get Pricing</a>
+            <Link className="btn-mortgage-primary" to="/contact">Get Pricing</Link>
             <Link className="btn-mortgage-outline" to="/contact">Schedule Call</Link>
           </div>
         </div>
@@ -230,39 +182,6 @@ export function MortgageServicesPage() {
               <article key={item.title} className="mortgage-service-card scroll-reveal-child">
                 <h3 className="mortgage-service-card-title">{item.title}</h3>
                 <p className="mortgage-service-card-desc">{item.desc}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </ScrollReveal>
-
-      <ScrollReveal as="section" id="pricing" className="mortgage-pricing" aria-labelledby="pricing-heading">
-        <div className="mortgage-section-inner">
-          <h2 id="pricing-heading" className="mortgage-section-title scroll-reveal-child">
-            Transparent Pricing
-          </h2>
-          <p className="mortgage-section-subtitle scroll-reveal-child">
-            No hidden fees. No surprises. Choose what works for you.
-          </p>
-          <div className="mortgage-pricing-grid">
-            {PRICING_TIERS.map((tier) => (
-              <article
-                key={tier.id}
-                className={`mortgage-pricing-card scroll-reveal-child${tier.popular ? ' mortgage-pricing-card--popular' : ''}`}
-              >
-                {tier.popular && <span className="mortgage-pricing-badge">MOST POPULAR</span>}
-                <h3 className="mortgage-pricing-card-title">{tier.title}</h3>
-                <p className="mortgage-pricing-price">{tier.price}</p>
-                <p className="mortgage-pricing-unit">{tier.unit}</p>
-                <ul className="mortgage-pricing-features">
-                  {tier.features.map((f) => (
-                    <li key={f}>{f}</li>
-                  ))}
-                </ul>
-                <p className="mortgage-pricing-best">
-                  Best for: <strong>{tier.bestFor}</strong>
-                </p>
-                <Link className="btn-mortgage-pricing" to="/contact">{tier.cta}</Link>
               </article>
             ))}
           </div>
@@ -312,7 +231,7 @@ export function MortgageServicesPage() {
           </p>
           <div className="mortgage-cta-buttons scroll-reveal-child">
             <Link className="btn-mortgage-primary" to="/contact">Schedule Discovery Call</Link>
-            <a className="btn-mortgage-outline-light" href="#pricing">Get Custom Pricing</a>
+            <Link className="btn-mortgage-outline-light" to="/contact">Get Custom Pricing</Link>
           </div>
           <ul className="mortgage-cta-badges scroll-reveal-child" aria-label="Trust indicators">
             <li>SOC 2 Compliant</li>
