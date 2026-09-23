@@ -40,9 +40,25 @@ const TAB_CONTENT: Record<TabId, { title: string; items: { title: string; desc: 
   web: { title: 'Web Services', items: WEB_SERVICES },
 };
 
+const TAB_PRICING: Record<TabId, { title: string; description: string }> = {
+  cloud: {
+    title: 'Cloud & Infrastructure Pricing',
+    description: 'Custom based on infrastructure size and project requirements',
+  },
+  it: {
+    title: 'IT Support Pricing',
+    description: 'Flexible support plans tailored to your team size, endpoints, and SLA requirements',
+  },
+  web: {
+    title: 'Web Services Pricing',
+    description: 'Custom project and maintenance plans tailored to your goals and ongoing needs',
+  },
+};
+
 export function TechnologyServicesPage() {
   const [activeTab, setActiveTab] = useState<TabId>('cloud');
   const content = TAB_CONTENT[activeTab];
+  const pricing = TAB_PRICING[activeTab];
 
   return (
     <div className="page page--service">
@@ -100,10 +116,10 @@ export function TechnologyServicesPage() {
       <ScrollReveal as="section" id="pricing" className="tech-pricing" aria-labelledby="tech-pricing-heading">
         <div className="service-section-inner service-section-inner--narrow">
           <h2 id="tech-pricing-heading" className="service-section-title scroll-reveal-child">
-            Pricing
+            {pricing.title}
           </h2>
           <p className="tech-pricing-desc scroll-reveal-child">
-            Custom based on infrastructure size
+            {pricing.description}
           </p>
           <Link className="btn-mortgage-pricing scroll-reveal-child" to="/contact">
             Get Quote
